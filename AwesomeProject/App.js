@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
-import { AppRegistry, View} from 'react-native';
+import { AppRegistry, View, Text, TextInput } from 'react-native';
 
-export default class FixedDimensionsBasics extends Component {
+export default class PizzaTranslator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {text: ''};
+  }
+
   render() {
     return (
-      <View>
-        <View style={{width: 50, height: 50, backgroundColor: 'red'}} />
-        <View style={{width: 100, height: 100, backgroundColor: 'yellow'}} />
-        <View style={{width: 150, height: 150, backgroundColor: 'blue'}} />
+      <View style={{padding: 10}}>
+        <TextInput
+          style={{height: 40}}
+          placeholder = "你好嘛"
+          onChangeText={(text) => this.setState({text})}
+        />
+        <Text style={{padding: 10, fontSize: 42}}>
+          {this.state.text.split(' ').map((word) => word && '📷').join(' ')}
+        </Text>
       </View>
     );
   }
 };
+
 // 注册应用(registerComponent)后才能正确渲染
 // 注意：只把应用作为一个整体注册一次，而不是每个组件/模块都注册
-AppRegistry.registerComponent('AwesomeProject', () => FixedDimensionsBasics);
-
-// AppRegistry.registerComponent('FixedDimensionsBasics', () => FixedDimensionsBasics);
+AppRegistry.registerComponent('AwesomeProject', () => PizzaTranslator);
